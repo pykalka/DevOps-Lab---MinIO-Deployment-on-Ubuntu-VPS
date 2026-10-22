@@ -1,0 +1,17 @@
+[Unit]
+Description=MinIO Object Storage
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=minio
+Group=minio
+EnvironmentFile=/etc/default/minio
+WorkingDirectory=/var/lib/minio
+ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+config/minio.env
+config/minio.env.local
+
+# TLS private keys/certificates
+*.pem
+*.key
+privkey.pem
+fullchain.pem
+
+# Build output and local artifacts
+minio
+minio.exe
+*.log
+.DS_Store
