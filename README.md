@@ -23,6 +23,7 @@ This example publishes the **MinIO Console** at `https://devopslabminio.duckdns.
 - A domain or subdomain whose DNS A record points to the VPS.
 - A build machine with Git and a Go toolchain compatible with the current MinIO source (upstream currently requires Go 1.24 or newer; verify this in the upstream repository).
 - SSH access to the VPS.
+- Run server-side commands as root. If you use a regular administrator account, prefix privileged commands with `sudo`.
 
 ### Open the required ports
 
@@ -42,10 +43,10 @@ This path uses the ready-made configuration templates in `config/`. You still ne
 
 ## 1. Clone this repository
 
-On your workstation or on the VPS:
+On your VPS:
 
 ```bash
-git clone https://github.com/pykalka/DevOps-Lab---MinIO-Deployment-on-Ubuntu-VPS.git
+git clone https://github.com/pykalka/DevOps-Lab---MinIO-Deployment-on-Ubuntu-VPS.git minio-deployment
 cd minio-deployment
 ```
 
