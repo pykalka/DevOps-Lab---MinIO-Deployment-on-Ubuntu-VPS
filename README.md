@@ -137,9 +137,9 @@ You can use DuckDNS for a free subdomain, or use a domain you already own.
 
 For DuckDNS:
 1. Open <https://www.duckdns.org/> and sign in using one of the supported login providers.
-2. Create a subdomain, for example `myproject`.
+2. Create a subdomain, for example `devopslabminio`.
 3. Set its IPv4 address to your VPS public IP, then save/update the record.
-4. Use the full hostname, for example `myproject.duckdns.org`, in the configuration below.
+4. Use the full hostname, for example `devopslabminio.duckdns.org`, in the configuration below.
 
 For a domain you own, open your DNS provider's control panel and create an **A record** for the chosen hostname pointing to the VPS public IPv4 address. DNS changes can take time to propagate.
 
@@ -148,7 +148,7 @@ Verify the DNS record from the VPS:
 ```bash
 apt-get update
 apt-get install -y dnsutils
-dig +short myproject.duckdns.org
+dig +short devopslabminio.duckdns.org
 ```
 
 The result should contain your VPS public IPv4 address. Replace the sample hostname in the command with your own.
@@ -190,7 +190,7 @@ Make sure that:
 Then run:
 
 ```bash
-certbot --nginx -d myproject.duckdns.org
+certbot --nginx -d devopslabminio.duckdns.org
 ```
 
 Replace the sample hostname. Follow Certbot's prompts, provide an email address, accept the terms, and choose HTTP-to-HTTPS redirection if offered. Certbot obtains the certificate and updates the Nginx configuration.
@@ -213,7 +213,7 @@ systemctl is-enabled minio
 systemctl is-active minio
 nginx -t
 curl -fsS http://127.0.0.1:9000/minio/health/live
-curl -I https://myproject.duckdns.org
+curl -I https://devopslabminio.duckdns.org
 ```
 
 Replace the sample hostname in the final command. The MinIO health endpoint should return successfully; the HTTPS request should show a successful HTTP response or a redirect.
@@ -263,7 +263,7 @@ MINIO_ROOT_USER=minioadmin
 MINIO_ROOT_PASSWORD=REPLACE_WITH_A_LONG_RANDOM_PASSWORD
 MINIO_VOLUMES="/var/lib/minio/data"
 MINIO_OPTS="--address 127.0.0.1:9000 --console-address 127.0.0.1:9001"
-MINIO_BROWSER_REDIRECT_URL="https://myproject.duckdns.org"
+MINIO_BROWSER_REDIRECT_URL="https://devopslabminio.duckdns.org"
 ```
 
 Protect the file because it contains credentials:
@@ -323,7 +323,7 @@ For a free DuckDNS subdomain:
 1. Visit <https://www.duckdns.org/> and sign in.
 2. Create a subdomain.
 3. Set its IPv4 address to the VPS public IP and save/update the record.
-4. Replace `myproject.duckdns.org` below with your actual hostname.
+4. Replace `devopslabminio.duckdns.org` below with your actual hostname.
 
 For a domain you own, create an A record in your DNS provider's control panel pointing the hostname to the VPS public IPv4 address. Do not publish your DNS-provider token in this repository.
 
@@ -332,7 +332,7 @@ Install a DNS lookup utility and check the result:
 ```bash
 apt-get update
 apt-get install -y dnsutils
-dig +short myproject.duckdns.org
+dig +short devopslabminio.duckdns.org
 ```
 
 The returned address should match your VPS public IPv4 address.
@@ -353,7 +353,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name myproject.duckdns.org;
+    server_name devopslabminio.duckdns.org;
 
     location / {
         proxy_pass http://127.0.0.1:9001;
